@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>
+    Nguyen Thi Bao Xuyen
+  </title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/shop.css">
+  <link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="icon" href="/images/favicon.ico">
+  <link rel="stylesheet" type="text/css" href="/fancybox/jquery.fancybox.min.css">
+</head>
+
+<body>
+  <header>
+    <div class="bg-danger text-white py-2 d-none d-md-block top-bar">
+        <div class="container">
+            <div class="row justifile">
+                <div class="col-md-8 col-align-center">
+                    <div class="topbar-date"><span id="date-vn"> ngay</span> <span> | </span> <span id="time">gio
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-4 text-right col-align-center d-flex flex-row-reverse">
+                    <div class="topbar-user col-align-center">
+                        <i class="fa fa-facebook-square mx-1"></i>
+                        <i class="fa fa-twitter mx-1"></i>
+                        <i class="fa fa-instagram mx-1"></i>
+                        <i class="fa fa-youtube-play mx-1 "></i>
+                        <button type="button" class="btn btn-link btn-sm ml-5" data-toggle="modal"
+                            data-target="#exampleModal">
+                            <i class="fa fa-user"></i> Đăng nhập
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/index.html"><img src="/images/logo-249x52.png" alt="" srcset=""
+                    width="200"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/shop">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/product">Product</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blog">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                </ul>
+                <div class="form-search">
+                    <form class="searchbar"> <input type="search" placeholder="Search here ....." name="search"
+                            class="searchbar-input" onkeyup="buttonUp();" required>
+                        <button type="submit" class="searchbar-submit">
+                            <i class="fa fa-search fa-lg" aria-hidden="true"></i>
+                        </button>
+                        <span class="searchbar-icon">
+                            <i class="fa fa-search fa-lg" aria-hidden="true"></i>
+                        </span>
+                    </form>
+                </div>
+                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#cartModal">
+                    <i class="fa fa-shopping-cart fa-lg"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Modal Login-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Đăng nhập</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="#">
+                        <div class="form-group">
+                            <label for="user">Tên đăng nhập: </label>
+                            <input type="text" class="form-control" placeholder="Nhập tên" id="ten">
+                            <div class="error" id="loiten"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Mật khẩu: </label>
+                            <input type="password" class="form-control" id="mat_khau" placeholder="Nhập mật khẩu">
+                            <div class="error" id="loipass"></div>
+                        </div>
+                        <button type="submit" class="btn btn-danger" onclick="dangnhap()">Đăng nhập</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-warning" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Cart-->
+    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="text-danger mt-3 title-cart">Giỏ hàng</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="cart-row"> <span class="cart-item cart-header cart-column">PRODUCT NAME</span> <span
+                            class="cart-price cart-header cart-column">PRICE</span> <span
+                            class="cart-quantity cart-header cart-column">QUANTITY</span> </div>
+                    <div class="cart-items">
+
+
+
+                    </div>
+                    <div class="cart-total"> <strong class="cart-total-title">Total:</strong> <span
+                            class="cart-total-price text-danger">0</span><span> vnđ</span> </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success btn-purchase" type="button">Đặt hàng</button>
+                    <button type="button" class="btn bg-warning" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div class="content">
+      <div>
+    <section class="breadcrumbs">
+    <img src="/images/breadcrumbs-bg.jpg" alt="" width="100%">
+    <div class="banner-title">
+        blog
+    </div>
+</section>
+</div>
+<div class="breadcrumbs">
+    <a href="/index.html">Home</a> <i class="fa fa-arrow-right"></i> <span class="active-page">
+        Blog</span>
+</div>
+    </div>
+
+    <footer>
+  <div class="container">
+    <div class="row footer-center">
+      <div class="col-md-3 col-12">
+        <div class="logo-footer">
+          <img src="/images/logo-249x52.png" alt="" srcset="" width="225px">
+          <!-- <h4 class="mt-4 footer-title"> Contact</h4> -->
+          <div class="contact-footer">
+            <p><i class="fa fa-map-marker"></i> 214 Nguyễn Đình Chiểu, P.6, Q.3</p>
+            <p><a href="tel:+8418001525"><i class="fa fa-phone"></i> 1800 1525 </a></p>
+            <p><a href="mailto:info@demolink.com"><i class="fa fa-envelope"></i> info@demolink.com </a></p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-md-3 col-12">
+        <ul>
+          <li class="footer-title">Support</li>
+          <li><a href="#" class="footer-link">Contact us</a></li>
+          <li><a href="#" class="footer-link">Cookies</a></li>
+          <li><a href="#" class="footer-link">Privacy & terms</a></li>
+          <li><a href="#" class="footer-link">Sitemap</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 col-12">
+        <ul>
+          <li class="footer-title">Support</li>
+          <li><a href="#" class="footer-link">Contact us</a></li>
+          <li><a href="#" class="footer-link">Cookies</a></li>
+          <li><a href="#" class="footer-link">Privacy & terms</a></li>
+          <li><a href="#" class="footer-link">Sitemap</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 col-12">
+        <h6 class="footer-title">ĐĂNG KÝ NHẬN THÔNG TIN</h6>
+        <form action="">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Email của bạn" id="mail" name="email"
+              style="border-radius:10px 0px 0 10px">
+            <div class="input-group-append">
+              <span class="input-group-text bg-danger text-light" style="border-radius: 0  10px 10px 0"><i
+                  class="fa fa fa-telegram"></i></span>
+            </div>
+          </div>
+        </form>
+        <hr class="hr-footer">
+        <h6 class="mt-4">CHẤP NHẬN THANH TOÁN THẺ</h6>
+        <p class="d-flex justify-content-around"><i class="fa fa-cc-visa fa-2x mr-1 text-secondary"></i>
+          <i class="fa fa-cc-paypal fa-2x mx-1 text-secondary"></i>
+          <i class="fa fa-cc-mastercard fa-2x mx-1 text-secondary"></i>
+          <i class="fa fa-cc-jcb fa-2x mx-1 text-secondary"></i>
+        </p>
+
+
+
+      </div>
+    </div>
+    <hr>
+    <div class="copy-right text-center">© 2021, Xuyen Nguyen </div>
+  </div>
+</footer>
+      <script src="/js/jquery-3.5.1.slim.min.js"></script>
+      <script src="/bootstrap/bootstrap.bundle.min.js"></script>
+      <!-- <script src="/js/popper.min.js"></script> -->
+      <script src="/fancybox/jquery.fancybox.min.js"></script>
+      <script src="/js/app.js"></script>
+      <script src="/js/shop.js"></script>
+</body>
+
+</html>

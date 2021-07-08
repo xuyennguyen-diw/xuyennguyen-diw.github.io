@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>
+    Nguyen Thi Bao Xuyen
+  </title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/shop.css">
+  <link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="icon" href="/images/favicon.ico">
+  <link rel="stylesheet" type="text/css" href="/fancybox/jquery.fancybox.min.css">
+</head>
+
+<body>
+  <header>
+    <div class="bg-danger text-white py-2 d-none d-md-block top-bar">
+      <div class="container">
+        <div class="row justifile">
+          <div class="col-md-8 col-align-center">
+            <div class="topbar-date"><span id="date-vn"> ngay</span> <span> | </span> <span id="time">gio
+              </span>
+            </div>
+          </div>
+          <div class="col-md-4 text-right col-align-center d-flex flex-row-reverse">
+            <div class="topbar-user col-align-center">
+              <i class="fa fa-facebook-square mx-1"></i>
+              <i class="fa fa-twitter mx-1"></i>
+              <i class="fa fa-instagram mx-1"></i>
+              <i class="fa fa-youtube-play mx-1 "></i>
+              <button type="button" class="btn btn-link btn-sm ml-5" data-toggle="modal" data-target="#exampleModal">
+                <i class="fa fa-user"></i> Đăng nhập
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="/index.html"><img src="/images/logo-249x52.png" alt="" srcset="" width="200"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/shop">Shop</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/product">Product</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/blog">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/gallery">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a>
+            </li>
+          </ul>
+          <div class="form-search">
+            <form class="searchbar"> <input type="search" placeholder="Search here ....." name="search"
+                class="searchbar-input" onkeyup="buttonUp();" required>
+              <button type="submit" class="searchbar-submit">
+                <i class="fa fa-search fa-lg" aria-hidden="true"></i>
+              </button>
+              <span class="searchbar-icon">
+                <i class="fa fa-search fa-lg" aria-hidden="true"></i>
+              </span>
+            </form>
+          </div>
+          <button type="button" class="btn btn-link" data-toggle="modal" data-target="#cartModal">
+            <i class="fa fa-shopping-cart fa-lg"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Modal Login-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Đăng nhập</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="#">
+              <div class="form-group">
+                <label for="user">Tên đăng nhập: </label>
+                <input type="text" class="form-control" placeholder="Nhập tên" id="ten">
+                <div class="error" id="loiten"></div>
+              </div>
+              <div class="form-group">
+                <label for="pwd">Mật khẩu: </label>
+                <input type="password" class="form-control" id="mat_khau" placeholder="Nhập mật khẩu">
+                <div class="error" id="loipass"></div>
+              </div>
+              <button type="submit" class="btn btn-danger" onclick="dangnhap()">Đăng nhập</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn bg-warning" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Modal Cart-->
+    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="text-danger mt-3 title-cart">Giỏ hàng</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="cart-row"> <span class="cart-item cart-header cart-column">PRODUCT NAME</span> <span
+                class="cart-price cart-header cart-column">PRICE</span> <span
+                class="cart-quantity cart-header cart-column">QUANTITY</span> </div>
+            <div class="cart-items">
+
+
+
+            </div>
+            <div class="cart-total"> <strong class="cart-total-title">Total:</strong> <span
+                class="cart-total-price text-danger">0</span><span> vnđ</span> </div>
+
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-success btn-purchase" type="button">Đặt hàng</button>
+            <button type="button" class="btn bg-warning" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="content">
+    <!-- slide -->
+    <section class="slide" style="position: relative; overflow: hidden;">
+      <div id="banner" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#banner" data-slide-to="0" class="active"></li>
+          <li data-target="#banner" data-slide-to="1"></li>
+          <li data-target="#banner" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="/images/slide-1.jpeg" class="d-block w-100" alt="Los Angeles">
+            <div class="carousel-caption d-none d-md-block text-left carousel-content">
+              <div class="text-decorative">Welcome to Our Online Store</div>
+              <h1>Grocery Store</h1>
+              <h3>for true gourmets</h3><br>
+              <button type="button" class="btn btn-danger">Shop Now</button>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="/images/slide-2.jpeg" class="d-block w-100" alt="Los Angeles">
+            <div class="carousel-caption d-none d-md-block text-left carousel-content">
+              <div class="text-decorative">A Wide Selection of Artisan Bread</div>
+              <h1>Baked goods</h1>
+              <h3>available at our store</h3><br>
+              <button type="button" class="btn btn-danger">Shop Now</button>
+            </div>
+
+          </div>
+          <div class="carousel-item">
+            <img src="/images/slide-3.jpeg" class="d-block w-100" alt="Los Angeles">
+            <div class="carousel-caption d-none d-md-block text-left carousel-content">
+              <div class="text-decorative">Fresh and Tasty</div>
+              <h1>vegetables</h1>
+              <h3>that you love</h3><br>
+              <button type="button" class="btn btn-danger">Shop Now</button>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#banner" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#banner" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span></a>
+      </div>
+    </section>
+
+    <!-- custom -->
+
+    <section class="custom">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 col-12">
+            <div class="custom-box">
+              <div class="box-icon-head">
+                <div class="box-icon text-danger"><i class="fa fa-area-chart fa-3x"></i></div>
+              </div>
+              <h4 class="custom-title">quality products</h4>
+              <p class="custom-text">We work with the best suppliers to offer our customers the fresh grocery
+                products of the highest quality.</p>
+            </div>
+          </div>
+          <div class="col-md-3 col-12">
+            <div class="custom-box">
+              <div class="box-icon-head">
+                <div class="box-icon text-danger"><i class="fa fa-money fa-3x"></i></div>
+              </div>
+              <h4 class="custom-title">Affordable prices</a></h4>
+              <p class="custom-text">Thanks to our affordable pricing policy, our customers don’t have to overpay for
+                the
+                products they need.</p>
+            </div>
+          </div>
+          <div class="col-md-3 col-12">
+            <div class="custom-box">
+              <div class="box-icon-head">
+                <div class="box-icon text-danger"><i class="fa fa-truck fa-3x"></i></div>
+              </div>
+              <h4 class="custom-title">Fast shipping</h4>
+              <p class="custom-text">Our store offers fast worldwide shipping to all customers regardless of what and
+                how
+                much you order.</p>
+            </div>
+          </div>
+          <div class="col-md-3 col-12">
+            <div class="custom-box">
+              <div class="box-icon-head">
+                <div class="box-icon text-danger"><i class="fa fa-clock-o  fa-3x"></i></div>
+              </div>
+              <h4 class="custom-title">open 24/7</h4>
+              <p class="custom-text">Unlike other grocery shops, we are ready to serve you 24/7 and offer the best
+                selection
+                of groceries.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- shop -->
+    <section class="shop">
+      <div class="container">
+        <div class="shop-header text-center">
+          <h4 class="text-decorative">Latest Arrivals</h4>
+          <h2 class="title-shop">New Products</h2>
+          <hr class="title-hr">
+        </div>
+        <div class="content-shop">
+          <div class="row">
+            <div class="col-md-3 col-6">
+              <div class="item p-1 text-center"> <img src="/images/product/grid-product-sm-9.png"
+                  class="shop-item-image img-fluid">
+                <p class="shop-item-title my-2">Bananas</p>
+                <p class="shop-item-price text-success">35,000vnđ</p>
+                <button class="shop-item-button btn btn-danger">Mua ngay</button>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="item p-1 text-center"> <img src="/images/product/grid-product-sm-8.png"
+                  class="shop-item-image img-fluid">
+                <p class="shop-item-title my-2">Strawberries</p>
+                <p class="shop-item-price text-success">65,000vnđ</p>
+                <button class="shop-item-button btn btn-danger">Mua ngay</button>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="item p-1 text-center"> <img src="/images/product/grid-product-sm-10.png"
+                  class="shop-item-image img-fluid">
+                <p class="shop-item-title my-2">Potatoes</p>
+                <p class="shop-item-price text-success">27,000vnđ</p>
+                <button class="shop-item-button btn btn-danger">Mua ngay</button>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="item p-1 text-center"> <img src="/images/product/grid-product-sm-11.png"
+                  class="shop-item-image img-fluid">
+                <p class="shop-item-title my-2">Carrots</p>
+                <p class="shop-item-price text-success">45,000vnđ</p>
+                <button class="shop-item-button btn btn-danger">Mua ngay</button>
+              </div>
+            </div>
+
+            <div class="col-md-3 col-6">
+              <div class="item p-1 text-center"> <img src="/images/product/grid-product-sm-12.png"
+                  class="shop-item-image img-fluid">
+                <p class="shop-item-title my-2">Sweet peppers</p>
+                <p class="shop-item-price text-success">55,000vnđ</p>
+                <button class="shop-item-button btn btn-danger">Mua ngay</button>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="item p-1 text-center"> <img src="/images/product/grid-product-sm-13.png"
+                  class="shop-item-image img-fluid">
+                <p class="shop-item-title my-2">Bagels</p>
+                <p class="shop-item-price text-success">10,000vnđ</p>
+                <button class="shop-item-button btn btn-danger">Mua ngay</button>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="item p-1 text-center"> <img src="/images/product/grid-product-sm-14.png"
+                  class="shop-item-image img-fluid">
+                <p class="shop-item-title my-2">Cucumbers</p>
+                <p class="shop-item-price text-success">22,000vnđ</p>
+                <button class="shop-item-button btn btn-danger">Mua ngay</button>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="item p-1 text-center"> <img src="/images/product/grid-product-sm-15.png"
+                  class="shop-item-image img-fluid">
+                <p class="shop-item-title my-2">Bread</p>
+                <p class="shop-item-price text-success">11,000vnđ</p>
+                <button class="shop-item-button btn btn-danger">Mua ngay</button>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+    </section>
+
+    <section class="parallax">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5">
+            <h2 class="parallax-title">Summer sale</h2>
+            <p>Purchase our tasty cakes and sweets for your next event or family dinner at our online shop and save more
+              money
+              than anywhere.</p>
+            <a data-fancybox href="https://www.youtube.com/watch?v=APCNdTX1AIM"><button type="button"
+                class="btn btn-danger ">
+                YouTube Video
+              </button></a>
+          </div>
+        </div>
+      </div>
+  </div>
+  </section>
+
+  <section class="gallery gallery-product">
+    <div class="container">
+      <div class="title text-center">
+        <h2 class="title-shop">GALLERY</h2>
+        <hr class="title-hr">
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-6">
+          <div class="img-product">
+            <a href="/images/gallery/grid-gallery-1.jpeg" data-fancybox="album1" data-caption="Caption #1" rel="album1">
+              <img src="/images/gallery/grid-gallery-370x315-1.jpeg" alt="" class="size-img" />
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4 col-6">
+          <div class="img-product">
+            <a href="/images/gallery/grid-gallery-2.jpeg" data-fancybox="album1" data-caption="Caption #1" rel="album1">
+              <img src="/images/gallery/grid-gallery-370x315-2.jpeg" alt="" class="size-img" />
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4 col-6">
+          <div class="img-product">
+            <a href="/images/gallery/grid-gallery-3.jpeg" data-fancybox="album1" data-caption="Caption #1" rel="album1">
+              <img src="/images/gallery/grid-gallery-370x315-3.jpeg" alt="" class="size-img" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- <section class="shop">
+  <div class="container">
+    <h4 class="title-style-1 wow fadeInLeft" style="visibility: visible; animation-name: fadeInLeft;">Latest Arrivals
+    </h4>
+    <h2 class="wow fadeScale" style="visibility: visible; animation-name: fadeScale;">New Products</h2>
+    <div class="isotope-wrap">
+
+      <div class="row row-30 row-lg-50 isotope" style="position: relative; height: 768px;">
+        <div class="col-sm-6 col-md-4 col-lg-3 isotope-item" data-filter="Type 2"
+          style="position: absolute; left: 0px; top: 0px;">
+          <article class="product wow fadeInRight" style="visibility: visible; animation-name: fadeInRight;">
+            <div class="product-body">
+              <div class="product-figure"><img src="images/product-1-220x160.png" alt="" width="220" height="160">
+              </div>
+              <h5 class="product-title"><a href="single-product.html">Bananas</a></h5>
+              <div class="product-price-wrap">
+                <div class="product-price product-price-old">$30.00</div>
+                <div class="product-price">$23.00</div>
+              </div>
+            </div><span class="product-badge product-badge-sale">Sale</span>
+            <div class="product-button-wrap">
+              <div class="product-button"><a class="button button-secondary button-zakaria fl-bigmug-line-search74"
+                  href="single-product.html"></a></div>
+              <div class="product-button"><a class="button button-primary button-zakaria fl-bigmug-line-shopping202"
+                  href="cart-page.html"></a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section> -->
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="row footer-center">
+        <div class="col-md-3 col-12">
+          <div class="logo-footer">
+            <img src="/images/logo-249x52.png" alt="" srcset="" width="225px">
+            <!-- <h4 class="mt-4 footer-title"> Contact</h4> -->
+            <div class="contact-footer">
+              <p><i class="fa fa-map-marker"></i> 214 Nguyễn Đình Chiểu, P.6, Q.3</p>
+              <p><a href="tel:+8418001525"><i class="fa fa-phone"></i> 1800 1525 </a></p>
+              <p><a href="mailto:info@demolink.com"><i class="fa fa-envelope"></i> info@demolink.com </a></p>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-3 col-12">
+          <ul>
+            <li class="footer-title">Support</li>
+            <li><a href="#" class="footer-link">Contact us</a></li>
+            <li><a href="#" class="footer-link">Cookies</a></li>
+            <li><a href="#" class="footer-link">Privacy & terms</a></li>
+            <li><a href="#" class="footer-link">Sitemap</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-12">
+          <ul>
+            <li class="footer-title">Support</li>
+            <li><a href="#" class="footer-link">Contact us</a></li>
+            <li><a href="#" class="footer-link">Cookies</a></li>
+            <li><a href="#" class="footer-link">Privacy & terms</a></li>
+            <li><a href="#" class="footer-link">Sitemap</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-12">
+          <h6 class="footer-title">ĐĂNG KÝ NHẬN THÔNG TIN</h6>
+          <form action="">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Email của bạn" id="mail" name="email"
+                style="border-radius:10px 0px 0 10px">
+              <div class="input-group-append">
+                <span class="input-group-text bg-danger text-light" style="border-radius: 0  10px 10px 0"><i
+                    class="fa fa fa-telegram"></i></span>
+              </div>
+            </div>
+          </form>
+          <hr class="hr-footer">
+          <h6 class="mt-4">CHẤP NHẬN THANH TOÁN THẺ</h6>
+          <p class="d-flex justify-content-around"><i class="fa fa-cc-visa fa-2x mr-1 text-secondary"></i>
+            <i class="fa fa-cc-paypal fa-2x mx-1 text-secondary"></i>
+            <i class="fa fa-cc-mastercard fa-2x mx-1 text-secondary"></i>
+            <i class="fa fa-cc-jcb fa-2x mx-1 text-secondary"></i>
+          </p>
+
+
+
+        </div>
+      </div>
+      <hr>
+      <div class="copy-right text-center">© 2021, Xuyen Nguyen </div>
+    </div>
+  </footer>
+  <script src="/js/jquery-3.5.1.slim.min.js"></script>
+  <script src="/bootstrap/bootstrap.bundle.min.js"></script>
+  <!-- <script src="/js/popper.min.js"></script> -->
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/shop.js"></script>
+</body>
+
+</html>
